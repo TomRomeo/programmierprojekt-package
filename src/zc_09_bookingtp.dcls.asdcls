@@ -1,0 +1,6 @@
+@EndUserText.label: 'Access Control for ZC_09_BOOKINGTP'
+@MappingRole: true
+define role ZC_09_BOOKINGTP {
+    grant select on ZC_09_BOOKINGTP 
+        where ( CarrierID ) = aspect pfcg_auth( S_CARRID, CARRID, ACTVT = '03' );
+}

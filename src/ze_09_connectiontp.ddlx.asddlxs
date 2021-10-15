@@ -1,0 +1,140 @@
+@Metadata.layer: #CUSTOMER
+@Search.searchable: true
+
+@UI.selectionVariant: [{
+    text: 'Connections',
+    qualifier: 'connections'
+ }]
+
+@UI.headerInfo:{
+   title.value: 'Header',
+   description.value: 'Description',
+   typeName: 'Connection',
+   typeNamePlural: 'Connections'
+}
+
+annotate view ZC_09_ConnectionTP with
+{
+  @UI.facet: [{ position: 10, label: 'Connection' , type: #COLLECTION, id: 'connection'},
+              { position: 20, label: 'General Information', type: #FIELDGROUP_REFERENCE, targetQualifier: 'GenInf', parentId: 'connection' },
+              { position: 30, label: 'Departure', type: #FIELDGROUP_REFERENCE, targetQualifier: 'Departure', parentId: 'connection' },
+              { position: 40, label: 'Destination', type: #FIELDGROUP_REFERENCE, targetQualifier: 'Destination', parentId: 'connection' },
+              { position: 50, label: 'Miscellaneous', type: #FIELDGROUP_REFERENCE, targetQualifier: 'miscs', parentId: 'connection' },
+              { position: 60, label: 'Flights', type: #LINEITEM_REFERENCE, targetElement: '_Flight' }]
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{position: 10, importance: #HIGH }],
+      fieldGroup: [{ position: 10, qualifier: 'GenInf'}]
+  }
+  CarrierID;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{position: 20, importance: #HIGH }],
+      fieldGroup: [{position: 20, qualifier: 'GenInf'}]
+  }
+  ConnectionID;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{position: 30, importance: #MEDIUM }],
+      fieldGroup: [{ position: 30, qualifier: 'Departure'}]
+  }
+  CountryFrom;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{position: 40, importance: #MEDIUM }],
+      fieldGroup: [{ position: 40, qualifier: 'Departure'}]
+  }
+  @EndUserText.label: 'Departure City'
+  CityFrom;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{position: 50, importance: #MEDIUM }],
+      fieldGroup: [{ position: 50, qualifier: 'Departure'}]
+  }
+  AirportFrom;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{position: 60, importance: #MEDIUM }],
+      fieldGroup: [{ position: 60, qualifier: 'Arrival'}]
+  }
+  CountryTo;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{position: 70, importance: #MEDIUM }],
+      fieldGroup: [{ position: 70, qualifier: 'Destination'}]
+  }
+  CityTo;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{position: 80, importance: #MEDIUM }],
+      fieldGroup: [{ position: 80, qualifier: 'Destination'}]
+  }
+  AirportTo;
+  /*
+  @UI: {
+      lineItem: [{position: 85, importance: #MEDIUM }],
+      fieldGroup: [{ position: 85, qualifier: 'GenInf'}]
+  }flighttime;*/
+
+  @UI: {
+      lineItem: [{position: 90, importance: #MEDIUM }],
+      fieldGroup: [{ position: 90, qualifier: 'Departure'}]
+  }
+  DepartureTime;
+
+  @UI: {
+      lineItem: [{position: 100, importance: #MEDIUM }],
+      fieldGroup: [{ position: 100, qualifier: 'Destination'}]
+  }
+  ArrivalTime;
+
+  @UI: {
+      lineItem: [{position: 110, importance: #MEDIUM }],
+      fieldGroup: [{ position: 110, qualifier: 'GenInf'}]
+  }
+  Distance;
+
+  @UI: {
+      fieldGroup: [{ position: 120, qualifier: 'miscs'}]
+  }
+  @EndUserText.label: 'Charter flight'
+  FlightType;
+
+  @UI: {
+      fieldGroup: [{ position: 130, qualifier: 'miscs'}]
+  }
+  @EndUserText.label: 'Day(s) between Departure and Arrival'
+  Period;
+}

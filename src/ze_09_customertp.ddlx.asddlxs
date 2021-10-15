@@ -1,0 +1,140 @@
+@Metadata.layer: #CUSTOMER
+@Search.searchable: true
+
+@UI.selectionVariant: [{
+    text: 'Customer',
+    qualifier: 'customers'
+ }]
+
+@UI.headerInfo:{
+  title.value: 'FormName',
+  description.value: 'Address',
+  typeName: 'Customer',
+  typeNamePlural: 'Customers'
+}
+
+annotate view ZC_09_CUSTOMERTP with
+{
+  @UI.facet: [{ position: 010, label: 'Customer' , type: #COLLECTION, id: 'customer' },
+              { position: 020, label: 'General Information', type: #FIELDGROUP_REFERENCE, targetQualifier: 'General', parentId: 'customer'},
+              { position: 030, label: 'Address Information', type: #FIELDGROUP_REFERENCE, targetQualifier: 'Address', parentId: 'customer'},
+              { position: 030, label: 'Contact Information', type: #FIELDGROUP_REFERENCE, targetQualifier: 'Contact', parentId: 'customer'},
+              { position: 040, label: 'Miscellaneous', type: #FIELDGROUP_REFERENCE, targetQualifier: 'miscs', parentId: 'customer'},
+              { position: 050, label: 'Bookings', type: #LINEITEM_REFERENCE, targetElement: '_Booking'}]
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+    lineItem: [{position: 10, importance: #HIGH }],
+    fieldGroup: [{position: 10, qualifier: 'General' }]
+  }
+  ID;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+    fieldGroup: [{position: 20, qualifier: 'General' }]
+  }
+  Name;
+
+  @UI: {
+    fieldGroup: [{position: 30, qualifier: 'General' }]
+  }
+  Form;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+    lineItem: [{position: 40, importance: #MEDIUM }],
+    fieldGroup: [{position: 40, qualifier: 'Address' }]
+  }
+  Street;
+
+  @UI: {
+    fieldGroup: [{position: 50, qualifier: 'Address' }]
+  }
+  @EndUserText.label: 'Postbox'
+  Postbox;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+    lineItem: [{position: 60, importance: #MEDIUM }],
+    fieldGroup: [{position: 60, qualifier: 'Address' }]
+  }
+  Postcode;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+    lineItem: [{position: 70, importance: #MEDIUM }],
+    fieldGroup: [{position: 70, qualifier: 'Address' }]
+  }
+  City;
+
+  @UI: {
+    lineItem: [{position: 80, importance: #LOW }],
+    fieldGroup: [{position: 80, qualifier: 'Address' }]
+  }
+  Country;
+
+  @UI: {
+    fieldGroup: [{position: 90, qualifier: 'Address' }]
+  }
+  Region;
+
+  @UI: {
+    lineItem: [{position: 145, importance: #LOW }],
+    fieldGroup: [{position: 100, qualifier: 'Contact' }]
+  }
+  @EndUserText.label: 'Telephon number'
+  Telephone;
+
+  @UI: {
+    fieldGroup: [{position: 110, qualifier: 'miscs' }]
+  }
+  @EndUserText.label: 'Customer Type'
+  CustomerType;
+
+  @UI: {
+    lineItem: [{position: 120, importance: #MEDIUM }],
+    fieldGroup: [{position: 120, qualifier: 'miscs' }]
+  }
+  Discount;
+
+  @UI: {
+    fieldGroup: [{position: 130, qualifier: 'miscs' }]
+  }
+  Language;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+    lineItem: [{position: 140, importance: #MEDIUM }],
+    fieldGroup: [{position: 140, qualifier: 'Contact' }]
+  }
+  EMail;
+
+  @UI: {
+    fieldGroup: [{position: 150, qualifier: 'Contact' }]
+  }
+  Webuser;
+
+  @UI: {
+    lineItem: [{position: 25, importance: #HIGH }]
+  }
+  @EndUserText.label: 'Name'
+  FormName;
+}

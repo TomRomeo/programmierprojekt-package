@@ -1,0 +1,165 @@
+@Metadata.layer: #CUSTOMER
+@Search.searchable: true
+
+@UI.selectionVariant: [{
+    text: 'Flights',
+    qualifier: 'flights'
+ }]
+
+@UI.headerInfo:{
+   title.value: 'Header',
+   typeName: 'Flight',
+   typeNamePlural: 'Flights'
+}
+
+annotate view ZC_09_FlightTP with
+{
+  @UI: {
+    facet: [{ position: 010, label: 'Connection' , type: #COLLECTION, id: 'connection'},
+            { position: 020, label: 'General Information', type: #FIELDGROUP_REFERENCE, targetElement: '_Connection', targetQualifier: 'GenInf', parentId: 'connection' },
+            { position: 030, label: 'Departure', type: #FIELDGROUP_REFERENCE, targetElement: '_Connection', targetQualifier: 'Departure', parentId: 'connection' },
+            { position: 040, label: 'Destination', type: #FIELDGROUP_REFERENCE, targetElement: '_Connection', targetQualifier: 'Destination', parentId: 'connection' },
+            { position: 050, label: 'Miscellaneous', type: #FIELDGROUP_REFERENCE, targetElement: '_Connection', targetQualifier: 'miscs', parentId: 'connection' },
+            { position: 060, label: 'Flight', type: #COLLECTION, id: 'flight' },
+            { position: 070, label: 'General Information' , type: #FIELDGROUP_REFERENCE, targetQualifier: 'GenInf', parentId: 'flight'},
+            { position: 080, label: 'Pricing' , type: #FIELDGROUP_REFERENCE, targetQualifier: 'Pricing', parentId: 'flight'},
+            { position: 090, label: 'Bookings', type: #LINEITEM_REFERENCE, targetElement: '_Booking' },
+            { position: 100, label: 'Meals', type: #LINEITEM_REFERENCE, targetElement: '_Meal' }]
+  }
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{position: 10, importance: #MEDIUM }],
+      fieldGroup: [{position: 10, qualifier: 'GenInf'}]
+  }
+  CarrierID;
+
+  @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{position: 20, importance: #MEDIUM }],
+      fieldGroup: [{position: 20, qualifier: 'GenInf'}]
+  }
+  ConnectionID;
+
+  @UI: {
+      lineItem: [{position: 30, importance: #HIGH }],
+      fieldGroup: [{ position: 30, qualifier: 'GenInf'}]
+  }
+  FlightDate;
+
+  @UI: {
+      lineItem: [{position: 40, importance: #MEDIUM }],
+      fieldGroup: [{ position: 40, qualifier: 'Pricing' }]
+
+  }
+  Price;
+
+  @UI: {
+      fieldGroup: [{ position: 50, qualifier: 'Pricing' }]
+  }
+  Currency;
+
+  @Search:{
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+      lineItem: [{ position: 60, importance: #MEDIUM }],
+      fieldGroup: [{ position: 60, qualifier: 'GenInf' }]
+  }
+  Planetype;
+
+  @UI: {
+      fieldGroup: [{ position: 70, qualifier: 'Pricing'}]
+  }
+  Paymentsum;
+
+  @UI: {
+    lineItem: [{position: 79, hidden: true }],
+    hidden: true
+  }
+  OccupancyY;
+
+  @UI: {
+     lineItem: [{position: 80, importance: #HIGH, type: #AS_DATAPOINT }],
+     dataPoint:{
+       title: 'Economy Class',
+       description: 'Occupancy',
+       targetValueElement: 'SeatsmaxY',
+       criticality: 'CriticalityY',
+       visualization: #PROGRESS
+     }
+  }
+  SeatsoccY;
+
+  @UI: {
+      facet: [{position: 80, type: #DATAPOINT_REFERENCE, targetQualifier: 'dp1', purpose: #HEADER}],
+      dataPoint:{
+        title: 'Economy Class',
+        description: 'Occupancy',
+        targetValueElement: 'SeatsmaxY',
+        criticality: 'CriticalityY',
+        visualization: #PROGRESS,
+        qualifier: 'dp1'
+      }
+  }
+  @EndUserText.label: ''
+  SeatsoccY2;
+
+  @UI: {
+      lineItem: [{position: 90, importance: #HIGH, type: #AS_DATAPOINT}],
+      dataPoint:{
+        title: 'Business Class',
+        description: 'Occupancy',
+        targetValueElement: 'SeatsmaxB',
+        criticality: 'CriticalityB',
+        visualization: #PROGRESS
+      }
+  }
+  SeatsoccB;
+  
+  @UI: {
+      facet: [{position: 90, type: #DATAPOINT_REFERENCE, targetQualifier: 'dp2', purpose: #HEADER}],
+      dataPoint:{
+        title: 'Business Class',
+        description: 'Occupancy',
+        targetValueElement: 'SeatsmaxB',
+        criticality: 'CriticalityB',
+        visualization: #PROGRESS,
+        qualifier: 'dp2'
+      }
+  }
+  @EndUserText.label: ''
+  SeatsoccB2;
+
+  @UI: {
+      lineItem: [{position: 100, importance: #HIGH, type: #AS_DATAPOINT}],
+      dataPoint:{
+        title: 'First Class',
+        description: 'Occupancy',
+        targetValueElement: 'SeatsmaxF',
+        criticality: 'CriticalityF',
+        visualization: #PROGRESS
+      }
+  }
+  SeatsoccF;
+  
+  @UI: {
+      facet: [{position: 100, type: #DATAPOINT_REFERENCE, targetQualifier: 'dp3', purpose: #HEADER}],
+      dataPoint:{
+        title: 'First Class',
+        description: 'Occupancy',
+        targetValueElement: 'SeatsmaxF',
+        criticality: 'CriticalityF',
+        visualization: #PROGRESS,
+        qualifier: 'dp3'
+      }
+  }
+  @EndUserText.label: ''
+  SeatsoccF2;
+}

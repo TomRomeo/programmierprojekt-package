@@ -1,0 +1,6 @@
+@EndUserText.label: 'Access Control for ZI_09_BOOKING'
+@MappingRole: true
+define role ZI_09_BOOKING {
+    grant select on ZI_09_BOOKING
+        where ( CarrierID ) = aspect pfcg_auth( S_CARRID, CARRID, ACTVT = '03' );
+}
