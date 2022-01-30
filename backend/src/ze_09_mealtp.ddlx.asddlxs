@@ -1,0 +1,49 @@
+@Metadata.layer: #CUSTOMER
+@Search.searchable: true
+
+@UI.selectionVariant: [{
+    text: 'Meals',
+    qualifier: 'meals'
+ }]
+ 
+ @UI.headerInfo:{
+  title.value: 'Text',
+  typeName: 'Meal',
+  typeNamePlural: 'Meal'
+}
+
+annotate view ZC_09_MEALTP with
+{
+  @UI.facet: [{ position: 10, label: 'Meal', type: #IDENTIFICATION_REFERENCE },
+              { position: 20, label: 'Connections', type: #LINEITEM_REFERENCE, targetElement: '_Connection'},
+              { position: 30, label: 'Flights', type: #LINEITEM_REFERENCE, targetElement: '_Flight'}]
+  
+  @Search:{
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+    lineItem: [{position: 10, importance: #HIGH }],
+    identification: [{position: 10, importance: #HIGH }]
+    }
+  CarrierID;
+  @UI: {
+    lineItem: [{position: 20, importance: #HIGH }],
+    identification: [{position: 20, importance: #HIGH }]
+    }
+  Mealnumber;
+  @UI: {
+    lineItem: [{position: 30, importance: #MEDIUM }],
+    identification: [{position: 30, importance: #MEDIUM }]
+    }
+  Sprache;
+  @Search:{
+      defaultSearchElement: true,
+      fuzzinessThreshold: 0.7
+  }
+  @UI: {
+    lineItem: [{position: 40, importance: #HIGH }],
+    identification: [{position: 40, importance: #HIGH }]
+    }
+  Text;
+}
