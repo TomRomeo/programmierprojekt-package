@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://s4d.virtual:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4d.virtual:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4d.virtual:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4d.virtual:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4d.virtual:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZC_12_CONNECTIONTP_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZC_09_BookingTPType" sap:label="Consumption View Booking" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CarrierID"/>
+                    <PropertyRef Name="ConnectionID"/>
+                    <PropertyRef Name="FlightDate"/>
+                    <PropertyRef Name="BookingID"/>
+                </Key>
+                <Property Name="CarrierID" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Airline" sap:quickinfo="Airline Code"/>
+                <Property Name="ConnectionID" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Connection Number" sap:quickinfo="Flight Connection Number"/>
+                <Property Name="FlightDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:label="Flight Date" sap:quickinfo="Flight date"/>
+                <Property Name="BookingID" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="NonNegative" sap:label="Booking Number" sap:quickinfo="Booking number"/>
+                <Property Name="CustomerID" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Customer Number"/>
+                <Property Name="CustomerType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="B/P customer" sap:quickinfo="Customer type"/>
+                <Property Name="IsSmoker" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Smoker"/>
+                <Property Name="LuggageWeight" Type="Edm.Decimal" Precision="9" Scale="4" sap:unit="WeightUnit"/>
+                <Property Name="WeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Measurement" sap:quickinfo="Weight Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="Invoice" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Invoice flag"/>
+                <Property Name="FlightClass" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Class" sap:quickinfo="Flight Class"/>
+                <Property Name="Amount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="Currency" sap:label="Booking Price"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:semantics="currency-code"/>
+                <Property Name="OrderDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Booking Date"/>
+                <Property Name="Counter" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Sales office" sap:quickinfo="Number of sales office"/>
+                <Property Name="Agencynum" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Agency No." sap:quickinfo="Travel Agency Number"/>
+                <Property Name="IsCancelled" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Cancelation flag"/>
+                <Property Name="Reserved" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Reserved" sap:quickinfo="Reservation flag"/>
+                <Property Name="Passname" Type="Edm.String" MaxLength="25" sap:label="Passenger Name" sap:quickinfo="Name of the Passenger"/>
+                <Property Name="Passform" Type="Edm.String" MaxLength="15" sap:label="Form of address"/>
+                <Property Name="Passbirth" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="DOB of Passenger" sap:quickinfo="Date of Birth of a Passenger"/>
+                <NavigationProperty Name="to_Customer" Relationship="ZC_12_CONNECTIONTP_SRV.assoc_7A31F58A9E75823078CEEA60591DAC87" FromRole="FromRole_assoc_7A31F58A9E75823078CEEA60591DAC87" ToRole="ToRole_assoc_7A31F58A9E75823078CEEA60591DAC87"/>
+                <NavigationProperty Name="to_Flight" Relationship="ZC_12_CONNECTIONTP_SRV.assoc_C683A87F7F6E9360E77ED99E0E02A49F" FromRole="ToRole_assoc_C683A87F7F6E9360E77ED99E0E02A49F" ToRole="FromRole_assoc_C683A87F7F6E9360E77ED99E0E02A49F"/>
+            </EntityType>
+            <EntityType Name="ZC_09_ConnectionTPType" sap:label="Consumption View Connection" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CarrierID"/>
+                    <PropertyRef Name="ConnectionID"/>
+                </Key>
+                <Property Name="CarrierID" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Airline" sap:quickinfo="Airline Code"/>
+                <Property Name="ConnectionID" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Connection Number" sap:quickinfo="Flight Connection Number"/>
+                <Property Name="CountryFrom" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country Key"/>
+                <Property Name="CityFrom" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Departure City" sap:quickinfo="Departure city"/>
+                <Property Name="AirportFrom" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Departure airport"/>
+                <Property Name="CountryTo" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country Key"/>
+                <Property Name="CityTo" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Arrival city"/>
+                <Property Name="AirportTo" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Destination airport"/>
+                <Property Name="DepartureTime" Type="Edm.Time" Precision="0" sap:label="Departure time"/>
+                <Property Name="ArrivalTime" Type="Edm.Time" Precision="0" sap:label="Arrival Time" sap:quickinfo="Arrival time"/>
+                <Property Name="Distance" Type="Edm.Decimal" Precision="9" Scale="4" sap:unit="DistanceUnit" sap:label="Distance"/>
+                <Property Name="DistanceUnit" Type="Edm.String" MaxLength="3" sap:label="Distance in" sap:quickinfo="Mass unit of distance (kms, miles)" sap:semantics="unit-of-measure"/>
+                <Property Name="FlightType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Charter flight" sap:quickinfo="Flight type"/>
+                <Property Name="Period" Type="Edm.Byte" sap:label="Day(s) between Departure and Arrival" sap:quickinfo="Arrival n day(s) later"/>
+                <Property Name="Header" Type="Edm.String" MaxLength="59"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="34"/>
+                <NavigationProperty Name="to_Flight" Relationship="ZC_12_CONNECTIONTP_SRV.assoc_5FE35DD77120C823BC68F7D223DE9940" FromRole="FromRole_assoc_5FE35DD77120C823BC68F7D223DE9940" ToRole="ToRole_assoc_5FE35DD77120C823BC68F7D223DE9940"/>
+                <NavigationProperty Name="to_Meal" Relationship="ZC_12_CONNECTIONTP_SRV.assoc_40FBC96363C13296374B557BDE66B1DE" FromRole="FromRole_assoc_40FBC96363C13296374B557BDE66B1DE" ToRole="ToRole_assoc_40FBC96363C13296374B557BDE66B1DE"/>
+            </EntityType>
+            <EntityType Name="ZC_09_CUSTOMERTPType" sap:label="Consumption View Customer" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="NonNegative" sap:label="Customer Number"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="25" sap:label="Customer name"/>
+                <Property Name="Form" Type="Edm.String" MaxLength="15" sap:label="Form of address"/>
+                <Property Name="Street" Type="Edm.String" MaxLength="30" sap:label="Street"/>
+                <Property Name="Postbox" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="PO Box"/>
+                <Property Name="Postcode" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Postal Code"/>
+                <Property Name="City" Type="Edm.String" MaxLength="25" sap:label="City"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country" sap:quickinfo="Country Code"/>
+                <Property Name="Region" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Region"/>
+                <Property Name="Telephone" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Tel. no." sap:quickinfo="Telephone number of flight customer"/>
+                <Property Name="CustomerType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="B/P customer" sap:quickinfo="Customer type"/>
+                <Property Name="Discount" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Discount (%)" sap:quickinfo="Discount rate"/>
+                <Property Name="Language" Type="Edm.String" MaxLength="2" sap:label="Language Key"/>
+                <Property Name="EMail" Type="Edm.String" MaxLength="40" sap:label="E-Mail Address" sap:quickinfo="Customer e-mail address"/>
+                <Property Name="Webuser" Type="Edm.String" MaxLength="25" sap:label="Web name" sap:quickinfo="Web user name for customer"/>
+                <NavigationProperty Name="to_Booking" Relationship="ZC_12_CONNECTIONTP_SRV.assoc_7A31F58A9E75823078CEEA60591DAC87" FromRole="ToRole_assoc_7A31F58A9E75823078CEEA60591DAC87" ToRole="FromRole_assoc_7A31F58A9E75823078CEEA60591DAC87"/>
+            </EntityType>
+            <EntityType Name="ZC_09_FlightTPType" sap:label="Consumption View Flight" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CarrierID"/>
+                    <PropertyRef Name="ConnectionID"/>
+                    <PropertyRef Name="FlightDate"/>
+                </Key>
+                <Property Name="CarrierID" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Airline" sap:quickinfo="Airline Code"/>
+                <Property Name="ConnectionID" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Connection Number" sap:quickinfo="Flight Connection Number"/>
+                <Property Name="FlightDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:label="Flight Date" sap:quickinfo="Flight date"/>
+                <Property Name="Price" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="Currency" sap:label="Airfare"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:label="Airline Currency" sap:quickinfo="Local currency of airline" sap:semantics="currency-code"/>
+                <Property Name="Planetype" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Plane Type" sap:quickinfo="Aircraft Type"/>
+                <Property Name="Paymentsum" Type="Edm.Decimal" Precision="18" Scale="3" sap:unit="Currency" sap:label="Booking total" sap:quickinfo="Total of current bookings"/>
+                <Property Name="SeatsmaxY" Type="Edm.Int32" sap:label="Max. capacity econ." sap:quickinfo="Maximum capacity in economy class"/>
+                <Property Name="SeatsoccY" Type="Edm.Int32" sap:label="Occupied econ." sap:quickinfo="Occupied seats in economy class"/>
+                <Property Name="SeatsoccY2" Type="Edm.Int32" sap:label="" sap:quickinfo="Occupied seats in economy class"/>
+                <Property Name="OccupancyY" Type="Edm.Double"/>
+                <Property Name="CriticalityY" Type="Edm.String" MaxLength="1" sap:display-format="NonNegative"/>
+                <Property Name="SeatsmaxB" Type="Edm.Int32" sap:label="Max. capacity bus." sap:quickinfo="Maximum capacity in business class"/>
+                <Property Name="SeatsoccB" Type="Edm.Int32" sap:label="Occupied bus." sap:quickinfo="Occupied seats in business class"/>
+                <Property Name="SeatsoccB2" Type="Edm.Int32" sap:label="" sap:quickinfo="Occupied seats in business class"/>
+                <Property Name="OccupancyB" Type="Edm.Double"/>
+                <Property Name="CriticalityB" Type="Edm.String" MaxLength="1" sap:display-format="NonNegative"/>
+                <Property Name="SeatsmaxF" Type="Edm.Int32" sap:label="Max. capacity 1st" sap:quickinfo="Maximum capacity in first class"/>
+                <Property Name="SeatsoccF" Type="Edm.Int32" sap:label="Occupied 1st" sap:quickinfo="Occupied seats in first class"/>
+                <Property Name="SeatsoccF2" Type="Edm.Int32" sap:label="" sap:quickinfo="Occupied seats in first class"/>
+                <Property Name="OccupancyF" Type="Edm.Double"/>
+                <Property Name="CriticalityF" Type="Edm.String" MaxLength="1" sap:display-format="NonNegative"/>
+                <NavigationProperty Name="to_Connection" Relationship="ZC_12_CONNECTIONTP_SRV.assoc_5FE35DD77120C823BC68F7D223DE9940" FromRole="ToRole_assoc_5FE35DD77120C823BC68F7D223DE9940" ToRole="FromRole_assoc_5FE35DD77120C823BC68F7D223DE9940"/>
+                <NavigationProperty Name="to_Booking" Relationship="ZC_12_CONNECTIONTP_SRV.assoc_C683A87F7F6E9360E77ED99E0E02A49F" FromRole="FromRole_assoc_C683A87F7F6E9360E77ED99E0E02A49F" ToRole="ToRole_assoc_C683A87F7F6E9360E77ED99E0E02A49F"/>
+                <NavigationProperty Name="to_Meal" Relationship="ZC_12_CONNECTIONTP_SRV.assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD" FromRole="FromRole_assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD" ToRole="ToRole_assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD"/>
+            </EntityType>
+            <EntityType Name="ZC_09_MEALTPType" sap:label="Consumption View Meal" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CarrierID"/>
+                    <PropertyRef Name="Mealnumber"/>
+                    <PropertyRef Name="Sprache"/>
+                </Key>
+                <Property Name="CarrierID" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Airline" sap:quickinfo="Airline Code"/>
+                <Property Name="Mealnumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="NonNegative" sap:label="Inflight meal number" sap:quickinfo="Number of inflight meals"/>
+                <Property Name="Sprache" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/>
+                <Property Name="Text" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Dish description" sap:quickinfo="Meal description"/>
+                <NavigationProperty Name="to_Connection" Relationship="ZC_12_CONNECTIONTP_SRV.assoc_40FBC96363C13296374B557BDE66B1DE" FromRole="ToRole_assoc_40FBC96363C13296374B557BDE66B1DE" ToRole="FromRole_assoc_40FBC96363C13296374B557BDE66B1DE"/>
+                <NavigationProperty Name="to_Flight" Relationship="ZC_12_CONNECTIONTP_SRV.assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD" FromRole="ToRole_assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD" ToRole="FromRole_assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD"/>
+            </EntityType>
+            <Association Name="assoc_7A31F58A9E75823078CEEA60591DAC87" sap:content-version="1">
+                <End Type="ZC_12_CONNECTIONTP_SRV.ZC_09_BookingTPType" Multiplicity="1" Role="FromRole_assoc_7A31F58A9E75823078CEEA60591DAC87">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="ZC_12_CONNECTIONTP_SRV.ZC_09_CUSTOMERTPType" Multiplicity="0..1" Role="ToRole_assoc_7A31F58A9E75823078CEEA60591DAC87"/>
+            </Association>
+            <Association Name="assoc_C683A87F7F6E9360E77ED99E0E02A49F" sap:content-version="1">
+                <End Type="ZC_12_CONNECTIONTP_SRV.ZC_09_FlightTPType" Multiplicity="1" Role="FromRole_assoc_C683A87F7F6E9360E77ED99E0E02A49F">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="ZC_12_CONNECTIONTP_SRV.ZC_09_BookingTPType" Multiplicity="*" Role="ToRole_assoc_C683A87F7F6E9360E77ED99E0E02A49F"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_C683A87F7F6E9360E77ED99E0E02A49F">
+                        <PropertyRef Name="FlightDate"/>
+                        <PropertyRef Name="ConnectionID"/>
+                        <PropertyRef Name="CarrierID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_C683A87F7F6E9360E77ED99E0E02A49F">
+                        <PropertyRef Name="FlightDate"/>
+                        <PropertyRef Name="ConnectionID"/>
+                        <PropertyRef Name="CarrierID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD" sap:content-version="1">
+                <End Type="ZC_12_CONNECTIONTP_SRV.ZC_09_FlightTPType" Multiplicity="1" Role="FromRole_assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="ZC_12_CONNECTIONTP_SRV.ZC_09_MEALTPType" Multiplicity="*" Role="ToRole_assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD"/>
+            </Association>
+            <Association Name="assoc_5FE35DD77120C823BC68F7D223DE9940" sap:content-version="1">
+                <End Type="ZC_12_CONNECTIONTP_SRV.ZC_09_ConnectionTPType" Multiplicity="1" Role="FromRole_assoc_5FE35DD77120C823BC68F7D223DE9940">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="ZC_12_CONNECTIONTP_SRV.ZC_09_FlightTPType" Multiplicity="*" Role="ToRole_assoc_5FE35DD77120C823BC68F7D223DE9940"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_5FE35DD77120C823BC68F7D223DE9940">
+                        <PropertyRef Name="ConnectionID"/>
+                        <PropertyRef Name="CarrierID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_5FE35DD77120C823BC68F7D223DE9940">
+                        <PropertyRef Name="ConnectionID"/>
+                        <PropertyRef Name="CarrierID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_40FBC96363C13296374B557BDE66B1DE" sap:content-version="1">
+                <End Type="ZC_12_CONNECTIONTP_SRV.ZC_09_ConnectionTPType" Multiplicity="1" Role="FromRole_assoc_40FBC96363C13296374B557BDE66B1DE">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="ZC_12_CONNECTIONTP_SRV.ZC_09_MEALTPType" Multiplicity="*" Role="ToRole_assoc_40FBC96363C13296374B557BDE66B1DE"/>
+            </Association>
+            <EntityContainer Name="ZC_12_CONNECTIONTP_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZC_09_BookingTP" EntityType="ZC_12_CONNECTIONTP_SRV.ZC_09_BookingTPType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZC_09_ConnectionTP" EntityType="ZC_12_CONNECTIONTP_SRV.ZC_09_ConnectionTPType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZC_09_CUSTOMERTP" EntityType="ZC_12_CONNECTIONTP_SRV.ZC_09_CUSTOMERTPType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZC_09_FlightTP" EntityType="ZC_12_CONNECTIONTP_SRV.ZC_09_FlightTPType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZC_09_MEALTP" EntityType="ZC_12_CONNECTIONTP_SRV.ZC_09_MEALTPType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD" Association="ZC_12_CONNECTIONTP_SRV.assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZC_09_FlightTP" Role="FromRole_assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD"/>
+                    <End EntitySet="ZC_09_MEALTP" Role="ToRole_assoc_E7D6F67E5ABCD2941A824EE3DFF14DAD"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_C683A87F7F6E9360E77ED99E0E02A49F" Association="ZC_12_CONNECTIONTP_SRV.assoc_C683A87F7F6E9360E77ED99E0E02A49F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZC_09_FlightTP" Role="FromRole_assoc_C683A87F7F6E9360E77ED99E0E02A49F"/>
+                    <End EntitySet="ZC_09_BookingTP" Role="ToRole_assoc_C683A87F7F6E9360E77ED99E0E02A49F"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_7A31F58A9E75823078CEEA60591DAC87" Association="ZC_12_CONNECTIONTP_SRV.assoc_7A31F58A9E75823078CEEA60591DAC87" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZC_09_BookingTP" Role="FromRole_assoc_7A31F58A9E75823078CEEA60591DAC87"/>
+                    <End EntitySet="ZC_09_CUSTOMERTP" Role="ToRole_assoc_7A31F58A9E75823078CEEA60591DAC87"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_5FE35DD77120C823BC68F7D223DE9940" Association="ZC_12_CONNECTIONTP_SRV.assoc_5FE35DD77120C823BC68F7D223DE9940" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZC_09_ConnectionTP" Role="FromRole_assoc_5FE35DD77120C823BC68F7D223DE9940"/>
+                    <End EntitySet="ZC_09_FlightTP" Role="ToRole_assoc_5FE35DD77120C823BC68F7D223DE9940"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_40FBC96363C13296374B557BDE66B1DE" Association="ZC_12_CONNECTIONTP_SRV.assoc_40FBC96363C13296374B557BDE66B1DE" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZC_09_ConnectionTP" Role="FromRole_assoc_40FBC96363C13296374B557BDE66B1DE"/>
+                    <End EntitySet="ZC_09_MEALTP" Role="ToRole_assoc_40FBC96363C13296374B557BDE66B1DE"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZC_12_CONNECTIONTP_SRV.ZC_12_CONNECTIONTP_SRV_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://s4d.virtual:443/sap/opu/odata/sap/ZC_12_CONNECTIONTP_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://s4d.virtual:443/sap/opu/odata/sap/ZC_12_CONNECTIONTP_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

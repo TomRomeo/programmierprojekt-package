@@ -1,0 +1,322 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "finalfinalresult",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "tags": {
+            "keywords": []
+        },
+        "resources": "resources.json",
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZC_12_CONNECTIONTP_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZC_12_CONNECTIONTP_ANNO_MDL",
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZC_12_CONNECTIONTP_ANNO_MDL": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_12_CONNECTIONTP_ANNO_MDL',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZC_12_CONNECTIONTP_ANNO_MDL.xml"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        },
+        "offline": false,
+        "sourceTemplate": {
+            "id": "ui5template.smartTemplate",
+            "version": "1.40.12"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize",
+            "sap_fiori_3"
+        ]
+    },
+    "sap.ui5": {
+        "resources": {
+            "js": [],
+            "css": []
+        },
+        "dependencies": {
+            "minUI5Version": "1.95.0",
+            "libs": {
+                "sap.ui.core": {
+                    "lazy": false
+                },
+                "sap.ui.generic.app": {
+                    "lazy": false
+                },
+                "sap.suite.ui.generic.template": {
+                    "lazy": false
+                }
+            },
+            "components": {}
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "i18n|sap.suite.ui.generic.template.ListReport|ZC_09_FlightTP": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ListReport/ZC_09_FlightTP/i18n.properties"
+            },
+            "i18n|sap.suite.ui.generic.template.ObjectPage|ZC_09_FlightTP": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ObjectPage/ZC_09_FlightTP/i18n.properties"
+            },
+            "i18n|sap.suite.ui.generic.template.ObjectPage|ZC_09_BookingTP": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ObjectPage/ZC_09_BookingTP/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.viewExtensions": {
+                    "sap.suite.ui.generic.template.ListReport.view.ListReport": {},
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {}
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.ui.generic.app": {
+        "_version": "1.3.0",
+        "settings": {
+            "forceGlobalRefresh": false,
+            "objectPageHeaderType": "Dynamic",
+            "considerAnalyticalParameters": true,
+            "showDraftToggle": false
+        },
+        "pages": {
+            "ListReport|ZC_09_FlightTP": {
+                "entitySet": "ZC_09_FlightTP",
+                "component": {
+                    "name": "sap.suite.ui.generic.template.ListReport",
+                    "list": true,
+                    "settings": {
+                        "condensedTableLayout": true,
+                        "smartVariantManagement": true,
+                        "enableTableFilterInPageVariant": true,
+                        "filterSettings": {
+                            "dateSettings": {
+                                "useDateRange": true
+                            }
+                        },
+                        "quickVariantSelectionX": {
+                            "variants": {
+                                "0": {
+                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#flights",
+                                    "entitySet": "ZC_09_FlightTP",
+                                    "key": "Flights",
+                                    "tableSettings": {}
+                                },
+                                "1": {
+                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#connections",
+                                    "entitySet": "ZC_09_ConnectionTP",
+                                    "key": "Connections",
+                                    "tableSettings": {}
+                                },
+                                "2": {
+                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#customers",
+                                    "entitySet": "ZC_09_CUSTOMERTP",
+                                    "key": "Customers",
+                                    "tableSettings": {}
+                                },
+                                "3": {
+                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#bookings",
+                                    "entitySet": "ZC_09_BookingTP",
+                                    "key": "Bookings",
+                                    "tableSettings": {}
+                                },
+                                "4": {
+                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#meals",
+                                    "entitySet": "ZC_09_MEALTP",
+                                    "key": "Meals",
+                                    "tableSettings": {}
+                                }
+                            },
+                            "showCounts": true,
+                            "enableAutoBinding": true
+                        }
+                    }
+                },
+                "pages": {
+                    "ObjectPage|ZC_09_FlightTP": {
+                        "entitySet": "ZC_09_FlightTP",
+                        "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                        },
+                        "pages": {
+                            "ObjectPage|to_Booking": {
+                                "navigationProperty": "to_Booking",
+                                "entitySet": "ZC_09_BookingTP",
+                                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            },
+                            "ObjectPage|to_Meal": {
+                                "navigationProperty": "to_Meal",
+                                "entitySet": "ZC_09_MEALTP",
+                                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            }
+                        }
+                    },
+                    "ObjectPage|ZC_09_ConnectionTP": {
+                        "entitySet": "ZC_09_ConnectionTP",
+                        "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                        },
+                        "pages": {
+                            "ObjectPage|to_Flight": {
+                                "navigationProperty": "to_Flight",
+                                "entitySet": "ZC_09_FlightTP",
+                                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            }
+                        }
+                    },
+                    "ObjectPage|ZC_09_CUSTOMERTP": {
+                        "entitySet": "ZC_09_CUSTOMERTP",
+                        "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                        },
+                        "pages": {
+                            "ObjectPage|to_Booking": {
+                                "navigationProperty": "to_Booking",
+                                "entitySet": "ZC_09_BookingTP",
+                                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            }
+                        }
+                    },
+                    "ObjectPage|ZC_09_Booking": {
+                        "entitySet": "ZC_09_BookingTP",
+                        "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                        },
+                        "pages": {
+                            "ObjectPage|to_Flight": {
+                                "navigationProperty": "to_Flight",
+                                "entitySet": "ZC_09_FlightTP",
+                                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            },
+                            "ObjectPage|to_Customer": {
+                                "navigationProperty": "to_Customer",
+                                "entitySet": "ZC_09_CUSTOMERTP",
+                                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            }
+                        }
+                    },
+                    "ObjectPage|ZC_09_MEALTP": {
+                        "entitySet": "ZC_09_MEALTP",
+                        "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                        },
+                        "pages": {
+                            "ObjectPage|to_Connection": {
+                                "navigationProperty": "to_Connection",
+                                "entitySet": "ZC_09_ConnectionTP",
+                                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            },
+                            "ObjectPage|to_Flight": {
+                                "navigationProperty": "to_Flight",
+                                "entitySet": "ZC_09_FlightTP",
+                                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": ""
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.platform.hcp": {
+        "uri": ""
+    }
+}
